@@ -9,8 +9,6 @@ WORKDIR /app
 # Copy application files
 COPY . /app
 
-RUN apt-get update && apt-get install -y libpq-dev
-
 
 # Install dependencies
 RUN pip install --no-cache-dir -r /app/requirements.txt

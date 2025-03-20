@@ -18,11 +18,13 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/${{ github.repository_owner }}/prometheus-exporter:latest .
+          LOWERCASE_OWNER=$(echo ${{ github.repository_owner }} | tr '[:upper:]' '[:lower:]')
+          docker build -t ghcr.io/$LOWERCASE_OWNER/prometheus-exporter:latest .
 
       - name: Push Docker image
         run: |
-          docker push ghcr.io/${{ github.repository_owner }}/prometheus-exporter:latest
+          LOWERCASE_OWNER=$(echo ${{ github.repository_owner }} | tr '[:upper:]' '[:lower:]')
+          docker push ghcr.io/$LOWERCASE_OWNER/prometheus-exporter:latest
 
       - name: Logout from Docker
         run: docker logout ghcr.io
